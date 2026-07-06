@@ -3,8 +3,10 @@ import SectionHeader from '../shared/SectionHeader';
 import StatusBadge from '../shared/StatusBadge';
 import Button from '../shared/Button';
 import actionItems from '../../data/actionItems';
+import { useLanguage } from '../../context/LanguageContext';
 
 function ActionQueue() {
+  const { t } = useLanguage();
   const [statusMap, setStatusMap] = useState({});
 
   const handleApprove = (id) => {
@@ -17,11 +19,11 @@ function ActionQueue() {
 
   return (
     <section className="border border-neutral-200 rounded-lg bg-white">
-      <div className="px-5 py-4 border-b border-neutral-200">
-        <SectionHeader title="Top 5 Action Items" />
+      <div className="px-5 py-4">
+        <SectionHeader title={t('actionItemsTitle')} />
       </div>
 
-      <ul className="divide-y divide-neutral-200">
+      <ul className="divide-y divide-neutral-200 border-t border-neutral-200">
         {actionItems.map((item) => {
           const currentStatus = statusMap[item.id];
           const isResolved = Boolean(currentStatus);
@@ -49,14 +51,14 @@ function ActionQueue() {
                   disabled={isResolved}
                   onClick={() => handleHold(item.id)}
                 >
-                  Hold
+                  {t('hold')}
                 </Button>
                 <Button
                   variant="primary"
                   disabled={isResolved}
                   onClick={() => handleApprove(item.id)}
                 >
-                  Approve
+                  {t('approve')}
                 </Button>
               </div>
             </li>

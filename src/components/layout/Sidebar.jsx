@@ -46,7 +46,7 @@ function NavGlyph({ id }) {
 
 function Sidebar() {
   return (
-    <aside className="w-14 flex flex-col items-center gap-1 border-r border-neutral-200 bg-white py-4">
+    <aside className="w-14 flex flex-col items-center gap-2 border-r border-neutral-200 bg-white py-4">
       {navItems.map((item) => (
         <button
           key={item.id}
@@ -56,7 +56,7 @@ function Sidebar() {
           className={`h-10 w-10 flex items-center justify-center rounded-lg transition-colors ${
             item.active
               ? 'bg-neutral-900 text-white'
-              : 'text-neutral-300 cursor-not-allowed'
+              : 'text-neutral-400 hover:text-neutral-600 cursor-not-allowed'
           }`}
         >
           <NavGlyph id={item.id} />

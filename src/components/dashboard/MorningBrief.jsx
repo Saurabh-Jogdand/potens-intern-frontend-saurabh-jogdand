@@ -1,10 +1,12 @@
+import { useLanguage } from '../../context/LanguageContext';
+
 function MorningBrief() {
+  const { t } = useLanguage();
+
   return (
     <div className="space-y-1">
-      <h1 className="text-lg font-semibold text-neutral-900">Good morning</h1>
-      <p className="text-sm text-neutral-500">
-        3 approvals pending · 1 anomaly flagged · fleet otherwise nominal
-      </p>
+      <h1 className="text-base font-medium text-neutral-900">{t('morningGreeting')}</h1>
+      <p className="text-sm text-neutral-500">{t('morningSummary')}</p>
     </div>
   );
 }

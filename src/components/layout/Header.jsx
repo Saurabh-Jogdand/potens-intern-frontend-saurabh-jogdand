@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 
 function Header() {
-  const [language, setLanguage] = useState('en');
+  const { language, setLanguage } = useLanguage();
 
   return (
     <header className="h-14 flex items-center justify-between px-6 border-b border-neutral-200 bg-white">
@@ -10,14 +10,12 @@ function Header() {
       </span>
 
       <div className="flex items-center gap-4">
-        <button
-          type="button"
-          disabled
-          className="text-xs font-medium text-neutral-400 cursor-not-allowed"
+        <span
+          className="text-xs font-medium text-neutral-400"
           title="Region switching coming in a later milestone"
         >
           Pune, Maharashtra
-        </button>
+        </span>
 
         <div className="flex items-center border border-neutral-200 rounded-md overflow-hidden text-xs">
           <button

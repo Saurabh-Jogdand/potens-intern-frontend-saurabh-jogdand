@@ -1,12 +1,15 @@
 import SectionHeader from '../shared/SectionHeader';
 import StatusBadge from '../shared/StatusBadge';
 import anomalies from '../../data/anomalies';
+import { useLanguage } from '../../context/LanguageContext';
 
 function AnomalyPanel() {
+  const { t } = useLanguage();
+
   return (
     <section className="border border-neutral-200 rounded-lg bg-white">
       <div className="px-5 py-4 border-b border-neutral-200">
-        <SectionHeader title="AI Watch" />
+        <SectionHeader title={t('aiWatchTitle')} />
       </div>
 
       <ul className="divide-y divide-neutral-200">
@@ -26,7 +29,7 @@ function AnomalyPanel() {
             </div>
             {anomaly.linkedActionItemId && (
               <p className="mt-2 text-xs text-neutral-400">
-                → linked to Action Item #{anomaly.linkedActionItemId}
+                → {t('linkedToActionItem')} #{anomaly.linkedActionItemId}
               </p>
             )}
           </li>

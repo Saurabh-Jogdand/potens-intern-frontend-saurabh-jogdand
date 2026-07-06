@@ -1,6 +1,6 @@
 function SectionHeader({ title }) {
   return (
-    <h2 className="text-sm font-semibold text-neutral-900">
+    <h2 className="text-xs font-semibold uppercase tracking-wide text-neutral-500">
       {title}
     </h2>
   );
