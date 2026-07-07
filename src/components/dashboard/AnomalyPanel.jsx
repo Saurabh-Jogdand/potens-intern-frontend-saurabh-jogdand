@@ -8,11 +8,11 @@ function AnomalyPanel() {
 
   return (
     <section className="border border-neutral-200 rounded-lg bg-white">
-      <div className="px-5 py-4 border-b border-neutral-200">
+      <div className="px-5 py-4">
         <SectionHeader title={t('aiWatchTitle')} />
       </div>
 
-      <ul className="divide-y divide-neutral-200">
+      <ul className="divide-y divide-neutral-200 border-t border-neutral-200">
         {anomalies.map((anomaly) => (
           <li key={anomaly.id} className="px-5 py-4">
             <p className="text-sm font-medium text-neutral-900">

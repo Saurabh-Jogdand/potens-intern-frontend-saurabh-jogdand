@@ -8,13 +8,18 @@ import { useLanguage } from '../../context/LanguageContext';
 function ActionQueue() {
   const { t } = useLanguage();
   const [statusMap, setStatusMap] = useState({});
+  const [justUpdatedId, setJustUpdatedId] = useState(null);
 
   const handleApprove = (id) => {
     setStatusMap((prev) => ({ ...prev, [id]: 'approved' }));
+    setJustUpdatedId(id);
+    setTimeout(() => setJustUpdatedId((current) => (current === id ? null : current)), 1500);
   };
 
   const handleHold = (id) => {
     setStatusMap((prev) => ({ ...prev, [id]: 'held' }));
+    setJustUpdatedId(id);
+    setTimeout(() => setJustUpdatedId((current) => (current === id ? null : current)), 1500);
   };
 
   return (
@@ -27,10 +32,14 @@ function ActionQueue() {
         {actionItems.map((item) => {
           const currentStatus = statusMap[item.id];
           const isResolved = Boolean(currentStatus);
+          const isJustUpdated = justUpdatedId === item.id;
 
           return (
-            <li key={item.id} className="px-5 py-4 flex items-start justify-between gap-4">
-              <div className={`min-w-0 ${isResolved ? 'opacity-50' : ''}`}>
+            <li
+              key={item.id}
+              className="px-5 py-4 flex items-start justify-between gap-4 transition-opacity duration-300"
+            >
+              <div className={`min-w-0 ${isResolved && !isJustUpdated ? 'opacity-50' : ''}`}>
                 <p className="text-sm font-medium text-neutral-900 truncate">
                   {item.title}
                 </p>
@@ -42,6 +51,11 @@ function ActionQueue() {
                   <span className="text-xs text-neutral-400">
                     {item.city} · {item.timestamp}
                   </span>
+                  {isJustUpdated && (
+                    <span className="text-xs font-medium text-emerald-600">
+                      ✓ Done
+                    </span>
+                  )}
                 </div>
               </div>
 
