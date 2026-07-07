@@ -1,8 +1,10 @@
+import { NavLink } from 'react-router-dom';
+
 const navItems = [
-  { id: 'cockpit', label: 'Cockpit', active: true },
-  { id: 'fleet', label: 'Fleet', active: false },
-  { id: 'approvals', label: 'Approvals', active: false },
-  { id: 'settings', label: 'Settings', active: false },
+  { id: 'cockpit', label: 'Cockpit', path: '/' },
+  { id: 'fleet', label: 'Fleet', path: '/fleet' },
+  { id: 'approvals', label: 'Approvals', path: '/approvals' },
+  { id: 'settings', label: 'Settings', path: '/settings' },
 ];
 
 function NavGlyph({ id }) {
@@ -46,21 +48,23 @@ function NavGlyph({ id }) {
 
 function Sidebar() {
   return (
-    <aside className="w-14 flex flex-col items-center gap-2 border-r border-neutral-200 bg-white py-4">
+    <aside className="w-14 flex flex-col items-center gap-2 border-r border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 py-4 transition-colors">
       {navItems.map((item) => (
-        <button
+        <NavLink
           key={item.id}
-          type="button"
+          to={item.path}
+          end={item.path === '/'}
           title={item.label}
-          disabled={!item.active}
-          className={`h-10 w-10 flex items-center justify-center rounded-lg transition-colors ${
-            item.active
-              ? 'bg-neutral-900 text-white'
-              : 'text-neutral-400 hover:text-neutral-600 cursor-not-allowed'
-          }`}
+          className={({ isActive }) =>
+            `h-10 w-10 flex items-center justify-center rounded-lg transition-colors ${
+              isActive
+                ? 'bg-neutral-900 dark:bg-neutral-100 text-white dark:text-neutral-900'
+                : 'text-neutral-400 dark:text-neutral-600 hover:text-neutral-600 dark:hover:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-800'
+            }`
+          }
         >
           <NavGlyph id={item.id} />
-        </button>
+        </NavLink>
       ))}
     </aside>
   );

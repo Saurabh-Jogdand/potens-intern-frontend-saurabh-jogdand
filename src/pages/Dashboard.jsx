@@ -12,11 +12,11 @@ function Dashboard() {
     <div className="space-y-8">
       <MorningBrief />
 
-      <div className="flex items-baseline gap-3 border-t border-b border-neutral-200 py-4">
-        <span className="text-4xl font-semibold tabular-nums text-indigo-600">
+      <div className="flex items-baseline gap-3 border-t border-b border-neutral-200 dark:border-neutral-800 py-4">
+        <span className="text-4xl font-semibold tabular-nums text-indigo-600 dark:text-indigo-400">
           {inTransit}
         </span>
-        <span className="text-xs text-neutral-500">{t('vehiclesInTransit')}</span>
+        <span className="text-xs text-neutral-500 dark:text-neutral-400">{t('vehiclesInTransit')}</span>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[62%_38%] gap-6">
